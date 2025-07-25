@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 
@@ -34,5 +35,5 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-# Paste your token between the quotes
-bot.run("MTM5ODA1OTE3NTg1ODI3ODQzMg.GSNG45.UvCufW9XbLgmwWibquj5RbwnBfcKP4aTOyPEZE")
+BOT_TOKEN = os.environ.get('https://discord-bot-z54o.onrender.com')
+bot.run(BOT_TOKEN)
