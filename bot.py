@@ -35,5 +35,7 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-BOT_TOKEN = os.environ.get('https://discord-bot-z54o.onrender.com')
+BOT_TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+if BOT_TOKEN is None:
+    raise ValueError("Missing DISCORD_BOT_TOKEN environment variable.")
 bot.run(BOT_TOKEN)
