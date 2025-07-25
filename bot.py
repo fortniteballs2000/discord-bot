@@ -1,0 +1,38 @@
+import discord
+from discord.ext import commands
+
+# ENABLE INTENTS
+intents = discord.Intents.default()
+intents.messages = True
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Replace with your user ID
+YOUR_USER_ID = 759934480696999968
+
+# Replace with the channel ID you want to monitor
+CHANNEL_ID = 1398061028020981900
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}!")
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if message.channel.id == CHANNEL_ID:
+        try:
+            # Send message content to your DM
+            user = await bot.fetch_user(YOUR_USER_ID)
+            await user.send(f"{message.author} suggested: {message.content}")
+            await message.delete()
+        except Exception as e:
+            print(f"Error: {e}")
+
+    await bot.process_commands(message)
+
+# Paste your token between the quotes
+bot.run("MTM5ODA1OTE3NTg1ODI3ODQzMg.GSNG45.UvCufW9XbLgmwWibquj5RbwnBfcKP4aTOyPEZE")
