@@ -11,7 +11,9 @@ def home():
     return "I'm alive!"
 
 def run():
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))  # Use Render's provided PORT, fallback to 10000 locally
+    print(f"[Flask] Running on port {port}")
+    app.run(host='0.0.0.0', port=port)
 
 Thread(target=run).start()
 
